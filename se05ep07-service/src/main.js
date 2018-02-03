@@ -1,5 +1,5 @@
-const cfg = require("../knexfile")
-const knex = require("knex")(cfg.development)
+const knex = require("./config").knex
+const oncatch = require("./config").oncatch
 const express = require("express")
 const morgan = require("morgan")
 const bodyParser = require("body-parser")
@@ -10,6 +10,8 @@ const app = express()
 app.use(cors())
 app.use(morgan("dev"))
 app.use(bodyParser.json())
+
+app.use("/festa",require("./festa").router)
 
 // Vamos adicionar rotas depois
 
